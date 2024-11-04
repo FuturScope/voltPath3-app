@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiLogin } from "../services/auth";
 import videoSrc from "../assets/images/chargingPort.mp4";
 import Swal from "sweetalert2";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
+import { apiLogin } from "../services/auth";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [termsAccepted, setTermsAccepted] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -22,7 +21,7 @@ const Login = () => {
       const formData = new FormData(e.target);
       const email = formData.get("email");
       const password = formData.get("password");
-      const response = await apiLogin({ email, password });
+      const response = await apiLogin ({ email, password });
       console.log(response.data);
 
       if (response.status === 200) {
@@ -36,7 +35,7 @@ const Login = () => {
         timer: 1500,
       });
 
-      navigate("/user-dashboard");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
       Swal.fire({
@@ -118,20 +117,14 @@ const Login = () => {
           </div>
 
           <div className="mb-4 w-[70%]">
-            <label className="flex items-center">
-              <input
-                type="checkbox"
-                className="mr-2"
-                checked={termsAccepted}
-                onChange={(e) => setTermsAccepted(e.target.checked)}
-              />
+            
               <span className="text-gray-700 text-sm">
-                I agree to the{" "}
+                I agree to the
                 <span className="text-blue-700 hover:text-[#4DA1FF] underline">
                   terms and conditions
                 </span>
               </span>
-            </label>
+          
           </div>
 
           <button
@@ -149,7 +142,7 @@ const Login = () => {
 
           <button
             type="button"
-            // Keep the button UI for Google login
+            
             className="w-[70%] bg-white border border-gray-300 px-4 py-2 rounded text-gray-700 flex items-center justify-center transition duration-300 ease-in-out hover:bg-gray-100 mb-2"
           >
             <FcGoogle className="mr-2" />
@@ -158,7 +151,7 @@ const Login = () => {
 
           <button
             type="button"
-            // Keep the button UI for Apple login
+            
             className="w-[70%] bg-black text-white border border-gray-300 px-4 py-2 rounded flex items-center justify-center transition duration-300 ease-in-out hover:bg-gray-800"
           >
             <FaApple className="mr-2" />
