@@ -153,10 +153,12 @@ const SignUp = () => {
           </div>
 
           <div className="mb-4 w-[70%]">
+            <input
+            type="checkbox"/>
             <span className="text-gray-700 text-sm">
-              I agree to the
-              <span className="text-blue-700 hover:text-[#4DA1FF] underline">
-                terms and conditions
+              I agree to the {""}
+               <span className="text-blue-700 hover:text-[#4DA1FF] underline">
+                 terms and conditions
               </span>
             </span>
           </div>

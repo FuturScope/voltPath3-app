@@ -117,14 +117,13 @@ const Login = () => {
           </div>
 
           <div className="mb-4 w-[70%]">
-            
-              <span className="text-gray-700 text-sm">
-                I agree to the
-                <span className="text-blue-700 hover:text-[#4DA1FF] underline">
-                  terms and conditions
-                </span>
+            <input type="checkbox" />
+            <span className="text-gray-700 text-sm">
+              I agree to the {""}
+              <span className="text-blue-700 hover:text-[#4DA1FF] underline">
+                terms and conditions
               </span>
-          
+            </span>
           </div>
 
           <button
@@ -142,7 +141,6 @@ const Login = () => {
 
           <button
             type="button"
-            
             className="w-[70%] bg-white border border-gray-300 px-4 py-2 rounded text-gray-700 flex items-center justify-center transition duration-300 ease-in-out hover:bg-gray-100 mb-2"
           >
             <FcGoogle className="mr-2" />
@@ -151,7 +149,6 @@ const Login = () => {
 
           <button
             type="button"
-            
             className="w-[70%] bg-black text-white border border-gray-300 px-4 py-2 rounded flex items-center justify-center transition duration-300 ease-in-out hover:bg-gray-800"
           >
             <FaApple className="mr-2" />

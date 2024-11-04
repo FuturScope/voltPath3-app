@@ -11,6 +11,7 @@ import Bookmarks from "./components/Bookmarks";
 import Trips from "./components/trips";
 import Maps from "./components/Maps";
 import Reservation from "./components/Reservation";
+import LogoutPopup from "./components/LogoutPopup";
 
 
 
@@ -75,6 +76,10 @@ function App() {
         {
           path:"settings",
           element: <Settings/>,
+        },
+        {
+          path:"logout",
+          element: <LogoutPopup/>,
         },
       ]
     }

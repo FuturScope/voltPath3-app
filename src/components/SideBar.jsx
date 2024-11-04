@@ -10,6 +10,7 @@ import {
   FaSignOutAlt,
   FaMap,
 } from "react-icons/fa";
+import LogoutPopup from "./LogoutPopup";
 
 const Sidebar = () => {
   return (
@@ -85,7 +86,7 @@ const Sidebar = () => {
         className="flex items-center text-[#4DA1FF] p-1 hover:bg-[#66ccff10] active:bg-[#66CCFF] focus:outline-none focus:ring focus:ring-[#66CCFF] rounded-md"
       >
         <FaSignOutAlt className="mr-3" />
-        Logout
+        <LogoutPopup/>
       </Link>
     </aside>
   );
