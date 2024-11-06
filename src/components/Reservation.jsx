@@ -8,6 +8,7 @@ const Reservation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      
       const formData = new FormData(e.target);
       const name = formData.get("name");
       const location = formData.get("location");
@@ -22,20 +23,26 @@ const Reservation = () => {
         reservationDate,
         reservationTime,
       });
+
       console.log(response);
 
       if (response.status === 200) {
-        const reservationId = response.data.id; // Store the ID
-        localStorage.setItem("reservationId", reservationId); // Optional storage
+       
+      console.log(response.data); 
+      
+      console.log("Navigating to booked slots page"); // Debugging line
+       navigate("/dashboard/booked-slots");
+
         Swal.fire({
           icon: "success",
           title: "Station booked successfully",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(`/dashboard/booked-slots/${reservationId}`);
-      }
 
+       
+
+      }
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -45,8 +52,6 @@ const Reservation = () => {
       });
     }
   };
-
-
 
   return (
     <div>
@@ -79,12 +84,11 @@ const Reservation = () => {
               className="w-full p-1 border rounded"
             >
               <option value="">Select a location</option>
-              <option value="East Legon">East Legon</option>
-              <option value="Abelemkpe">Abelemkpe</option>
-              <option value="Oyarifa">Oyarifa</option>
-              <option value="Achimota">Achimota</option>
-              <option value="Pokuwase">Pokuase</option>
-              <option value="Dansoman">Dansoman</option>
+              <option value="East Legon">Dansoman</option>
+              <option value="Abelemkpe">Cantoments</option>
+              <option value="Pokuwase">Osu</option>
+              <option value="Oyarifa">Legon</option>
+              <option value="Achimota">Spintex</option>
             </select>
           </div>
 
@@ -106,9 +110,8 @@ const Reservation = () => {
               </option>
             </select>
             <div>
-              {" "}
-              <p className="flex items-center mt-4 text-gray-700  font-bold">
-                <span className="w-2 h-2 rounded-full  bg-green-600 mr-2"></span>
+              <p className="flex items-center mt-4 text-gray-700 font-bold">
+                <span className="w-2 h-2 rounded-full bg-green-600 mr-2"></span>
                 Available
               </p>
             </div>
@@ -123,7 +126,7 @@ const Reservation = () => {
               Reservation Date
             </label>
             <input
-              type="reservationDate"
+              type="date"
               id="reservationDate"
               name="reservationDate"
               className="w-full p-1 border rounded mb-2"
@@ -131,7 +134,7 @@ const Reservation = () => {
             />
             <label
               className="block text-gray-700 font-bold mb-2"
-              htmlFor="timeSlot"
+              htmlFor="reservationTime"
             >
               Time Slot
             </label>
@@ -153,14 +156,12 @@ const Reservation = () => {
               <option value="05:00 PM">05:00 PM</option>
             </select>
 
-            
-              <button
-                type="submit"
-                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4"
-              >
-                Book slot
-              </button>
-    
+            <button
+              type="submit"
+              className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4"
+            >
+              Book slot
+            </button>
           </div>
         </div>
       </form>
@@ -169,3 +170,4 @@ const Reservation = () => {
 };
 
 export default Reservation;
+

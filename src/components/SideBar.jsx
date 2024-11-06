@@ -42,7 +42,7 @@ const Sidebar = ({id}) => {
         </Link>
 
         <Link
-          to={`/</div>dashboard/booked-slots ${id}`}
+          to="/dashboard/booked-slots"
           className="flex items-center text-[#4DA1FF] p-1 hover:bg-[#66ccff10] active:bg-[#66CCFF] focus:outline-none focus:ring focus:ring-[#66CCFF] rounded-md"
         >
           <FaCalendarCheck className="mr-3" />

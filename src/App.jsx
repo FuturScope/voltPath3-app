@@ -8,11 +8,12 @@ import Overview from "./components/Overview";
 import DashBoardLayout from "./layouts/dashBoardLayout";
 import Favourites from "./components/Favourites";
 import Bookmarks from "./components/Bookmarks";
-import Trips from "./components/trips";
+import Trips from "./components/Trips";
 import Maps from "./components/Maps";
 import Reservation from "./components/Reservation";
 import LogoutPopup from "./components/LogoutPopup";
-import BookedSlots from "./components/bookSlots";
+import BookedSlots from "./components/BookedSlots";
+
 
 
 
@@ -59,8 +60,9 @@ function App() {
           element: <Favourites/>,
         },
         {
-          path:"booked-slots/:id",
-          element: <BookedSlots/>,
+          path: "booked-slots",
+          element:<BookedSlots/>,
+          
         },
         {
           path:"bookmarks",
