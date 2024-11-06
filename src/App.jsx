@@ -18,12 +18,6 @@ import BookedSlots from "./components/BookedSlots";
 
 
 
-
-
-
-
-
-
 function App() {
   const router = createBrowserRouter([
     {
