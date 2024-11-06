@@ -21,7 +21,7 @@ const Login = () => {
       const formData = new FormData(e.target);
       const email = formData.get("email");
       const password = formData.get("password");
-      const response = await apiLogin ({ email, password });
+      const response = await apiLogin({ email, password });
       console.log(response.data);
 
       if (response.status === 200) {

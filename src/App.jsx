@@ -12,6 +12,7 @@ import Trips from "./components/trips";
 import Maps from "./components/Maps";
 import Reservation from "./components/Reservation";
 import LogoutPopup from "./components/LogoutPopup";
+import BookedSlots from "./components/bookSlots";
 
 
 
@@ -56,6 +57,10 @@ function App() {
         {
           path:"favourites",
           element: <Favourites/>,
+        },
+        {
+          path:"booked-slots/:id",
+          element: <BookedSlots/>,
         },
         {
           path:"bookmarks",

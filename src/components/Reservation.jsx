@@ -1,141 +1,169 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { apiReserve } from "../services/reserve";
+import Swal from "sweetalert2";
 
 const Reservation = () => {
-  const [stations, setStations] = useState([]);
-  const [selectedStation, setSelectedStation] = useState(null);
-  const [notificationEnabled, setNotificationEnabled] = useState(false);
-  const [reservationTime, setReservationTime] = useState("");
-  const [reservationDate, setReservationDate] = useState("");
-  const [timeSlot, setTimeSlot] = useState(""); // State for time slot
+  const navigate = useNavigate();
 
-  // Mock data for charging stations
-  const mockStationsData = [
-    { id: 1, name: "Station A", price: 1.5, speed: "50 kW", available: true },
-    { id: 2, name: "Station B", price: 1.2, speed: "75 kW", available: false },
-    { id: 3, name: "Station C", price: 2.0, speed: "100 kW", available: true },
-  ];
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData(e.target);
+      const name = formData.get("name");
+      const location = formData.get("location");
+      const chargerType = formData.get("chargerType");
+      const reservationDate = formData.get("reservationDate");
+      const reservationTime = formData.get("reservationTime");
 
-  useEffect(() => {
-    // Fetch nearby charging stations
-    setStations(mockStationsData);
-  }, []);
+      const response = await apiReserve({
+        name,
+        location,
+        chargerType,
+        reservationDate,
+        reservationTime,
+      });
+      console.log(response);
 
-  const handleReserve = (station) => {
-    setSelectedStation(station);
-    setNotificationEnabled(true);
-    console.log(
-      `Reserved slot at ${station.name} on ${reservationDate} at ${timeSlot}`
-    );
-  };
+      if (response.status === 200) {
+        const reservationId = response.data.id; // Store the ID
+        localStorage.setItem("reservationId", reservationId); // Optional storage
+        Swal.fire({
+          icon: "success",
+          title: "Station booked successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(`/dashboard/booked-slots/${reservationId}`);
+      }
 
-  const handleNotify = () => {
-    if (notificationEnabled) {
-      alert(`Notification set for ${reservationTime}`);
+    } catch (error) {
+      console.error(error);
+      Swal.fire({
+        icon: "error",
+        title: "Failed to book station",
+        text: "An error occurred while booking the station. Please try again.",
+      });
     }
   };
 
+
+
   return (
     <div>
-      <div className="charging-stations-container p-6 bg-[#1A1C2C] rounded shadow-md">
-        <h1 className="text-2xl font-semibold mb-4">
-          Nearby EV Charging Stations
-        </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="w-[100%] mx-auto p-6 bg-white shadow-md rounded-lg"
+      >
+        <h2 className="font-bold mb-2 text-gray-700">
+          Reserve a charging slot
+        </h2>
 
-        <table className="min-w-full bg-white border border-gray-300">
-          <thead>
-            <tr>
-              <th className=" py-2 px-4 text-left">Name</th>
-              <th className=" py-2 px-4 text-left">Price (ghc/kWh)</th>
-              <th className=" py-2 px-4 text-left">Charging Speed</th>
-              <th className=" py-2 px-4 text-left">Availability</th>
-              <th className=" py-2 px-4 text-left">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stations.map((station) => (
-              <tr key={station.id}>
-                <td className="py-2 px-4">{station.name}</td>
-                <td className="py-2 px-4">{station.price}</td>
-                <td className="py-2 px-4">{station.speed}</td>
-                <td className="py-2 px-4 flex items-center">
-                  {station.available ? (
-                    <>
-                      <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                      Available
-                    </>
-                  ) : (
-                    <>
-                      <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
-                      Unavailable
-                    </>
-                  )}
-                </td>
-                <td className=" py-2 px-4">
-                  {station.available && (
-                    <button
-                      onClick={() => handleReserve(station)}
-                      className="bg-blue-600 text-white px-2 py-1 rounded"
-                    >
-                      Reserve
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="mb-2">
+            <label className="text-gray-700 font-bold mb-2" htmlFor="name">
+              Name
+            </label>
+            <select name="name" id="name" className="w-full p-1 border rounded">
+              <option value="">Select a station</option>
+              <option value="Thunder Volt">Thunder Volt</option>
+            </select>
+          </div>
 
-        <div className="mt-4">
-          <h2 className="text-xl">Choose a date and time</h2>
-          <label
-            className="block text-gray-700 font-bold mb-2"
-            htmlFor="reservationDate"
-          >
-            Reservation Date
-          </label>
-          <input
-            type="date"
-            id="reservationDate"
-            name="reservationDate"
-            value={reservationDate}
-            onChange={(e) => setReservationDate(e.target.value)}
-            className="w-full p-1 border rounded mb-2"
-            required
-          />
-          <label
-            className="block text-gray-700 font-bold mb-2"
-            htmlFor="timeSlot"
-          >
-            Time Slot
-          </label>
-          <select
-            id="timeSlot"
-            name="timeSlot"
-            value={timeSlot}
-            onChange={(e) => setTimeSlot(e.target.value)}
-            className="w-full p-1 border rounded mb-2"
-            required
-          >
-            <option value="">Select a time slot</option>
-            <option value="09:00 AM">09:00 AM</option>
-            <option value="10:00 AM">10:00 AM</option>
-            <option value="11:00 AM">11:00 AM</option>
-            <option value="12:00 PM">12:00 PM</option>
-            <option value="01:00 PM">01:00 PM</option>
-            <option value="02:00 PM">02:00 PM</option>
-            <option value="03:00 PM">03:00 PM</option>
-            <option value="04:00 PM">04:00 PM</option>
-            <option value="05:00 PM">05:00 PM</option>
-          </select>
-          <button
-            onClick={() => handleNotify()}
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          >
-            Book slot
-          </button>
+          <div className="mb-2">
+            <label className="text-gray-700 font-bold mb-2" htmlFor="location">
+              Location
+            </label>
+            <select
+              name="location"
+              id="location"
+              className="w-full p-1 border rounded"
+            >
+              <option value="">Select a location</option>
+              <option value="East Legon">East Legon</option>
+              <option value="Abelemkpe">Abelemkpe</option>
+              <option value="Oyarifa">Oyarifa</option>
+              <option value="Achimota">Achimota</option>
+              <option value="Pokuwase">Pokuase</option>
+              <option value="Dansoman">Dansoman</option>
+            </select>
+          </div>
+
+          <div className="mb-2">
+            <label
+              className="text-gray-700 font-bold mb-2"
+              htmlFor="chargerType"
+            >
+              Charger Type
+            </label>
+            <select
+              name="chargerType"
+              id="chargerType"
+              className="w-full p-1 border rounded"
+            >
+              <option value="">Select a charger type</option>
+              <option value="Level 1 Charger (120V AC)">
+                Level 1 Charger (Standard 120V AC)
+              </option>
+            </select>
+            <div>
+              {" "}
+              <p className="flex items-center mt-4 text-gray-700  font-bold">
+                <span className="w-2 h-2 rounded-full  bg-green-600 mr-2"></span>
+                Available
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-4 col-span-2">
+            <h2 className="text-xl">Choose a date and time</h2>
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="reservationDate"
+            >
+              Reservation Date
+            </label>
+            <input
+              type="reservationDate"
+              id="reservationDate"
+              name="reservationDate"
+              className="w-full p-1 border rounded mb-2"
+              required
+            />
+            <label
+              className="block text-gray-700 font-bold mb-2"
+              htmlFor="timeSlot"
+            >
+              Time Slot
+            </label>
+            <select
+              id="reservationTime"
+              name="reservationTime"
+              className="w-full p-1 border rounded mb-2"
+              required
+            >
+              <option value="">Select a time slot</option>
+              <option value="09:00 AM">09:00 AM</option>
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:00 AM">11:00 AM</option>
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="01:00 PM">01:00 PM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="03:00 PM">03:00 PM</option>
+              <option value="04:00 PM">04:00 PM</option>
+              <option value="05:00 PM">05:00 PM</option>
+            </select>
+
+            
+              <button
+                type="submit"
+                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 mt-4"
+              >
+                Book slot
+              </button>
+    
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
