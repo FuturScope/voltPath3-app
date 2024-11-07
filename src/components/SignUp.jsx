@@ -23,6 +23,7 @@ const SignUp = () => {
       const password = formData.get("password");
       const payload = { firstName, lastName, email, password };
       const response = await apiSignup(payload);
+      console.log(response.data);
 
       Swal.fire({
         icon: "success",
@@ -153,12 +154,11 @@ const SignUp = () => {
           </div>
 
           <div className="mb-4 w-[70%]">
-            <input
-            type="checkbox"/>
+            <input type="checkbox" />
             <span className="text-gray-700 text-sm">
               I agree to the {""}
-               <span className="text-blue-700 hover:text-[#4DA1FF] underline">
-                 terms and conditions
+              <span className="text-blue-700 hover:text-[#4DA1FF] underline">
+                terms and conditions
               </span>
             </span>
           </div>
@@ -172,6 +172,14 @@ const SignUp = () => {
           </button>
         </form>
       </div>
+      <a
+        href="https://www.freepik.com/free-video/realistic-3d-rendering-electric-vehicle-charging-port-plugging-car_3384309"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute bottom-2 right-2 text-[0.5rem] font-thin text-white underline z-20"
+      >
+        Background video by jcomp on Freepik
+      </a>
     </div>
   );
 };

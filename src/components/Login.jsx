@@ -146,6 +146,14 @@ const Login = () => {
           </button>
         </form>
       </div>
+      <a
+        href="https://www.freepik.com/free-video/realistic-3d-rendering-electric-vehicle-charging-port-plugging-car_3384309"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute bottom-2 right-2 text-[0.5rem] font-thin text-white underline z-20"
+      >
+        Background video by jcomp on Freepik
+      </a>
     </div>
   );
 };
