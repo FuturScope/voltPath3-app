@@ -7,7 +7,7 @@ import {
   FaCar,
   FaSignOutAlt,
   FaMap,
-  FaCalendarCheck, // New icon for booked slots
+  FaCalendarCheck,
 } from "react-icons/fa";
 import LogoutPopup from "./LogoutPopup";
 

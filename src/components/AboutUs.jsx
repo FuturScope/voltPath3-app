@@ -3,7 +3,7 @@ import image3 from "../assets/images/image3.jpg";
 const AboutUs = () => {
   return (
     <div className="bg-[#050E2D] relative overflow-hidden" id="about_us">
-      {/* Neon Border Effect */}
+      
       <div className="absolute inset-0 bg-[#0B132B] opacity-50 rounded-lg blur-lg"></div>
       <h1 className="relative text-white text-3xl font-extrabold flex justify-center pt-[2%] mb-[5%] transition-all duration-300 ease-in-out transform hover:text-[#6DD8FF] hover:scale-110">
         <span className="absolute inset-0 bg-[#4DA1FF] rounded-lg blur-md opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100"></span>

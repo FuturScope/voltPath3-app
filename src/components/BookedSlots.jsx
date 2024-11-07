@@ -7,7 +7,7 @@ const BookedSlots = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch booked slots data from the API
+  
     const fetchBookedSlots = async () => {
       try {
         const response = await axios.get(
@@ -42,7 +42,6 @@ const BookedSlots = () => {
         Booked Charging Slots
       </h2>
 
-      {/* If there are no booked slots */}
       {bookedSlots.length === 0 ? (
         <p>No booked slots available.</p>
       ) : (

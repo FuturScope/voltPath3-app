@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import logo from "../assets/images/logo.png"; // Adjust the path as necessary
+import logo from "../assets/images/logo.png"; 
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // State to manage the menu visibility
-  const menuRef = useRef(null); // Ref to the menu for click detection
+  const [isOpen, setIsOpen] = useState(false); 
+  const menuRef = useRef(null); 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  // Close menu when clicking outside of it
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsOpen(false); // Close the menu if clicked outside
+        setIsOpen(false); 
       }
     };
 
@@ -36,7 +36,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* Hamburger Menu Icon */}
+        
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -76,9 +76,9 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Collapsible Menu */}
+        
         <ul
-          ref={menuRef} // Attach ref to the menu
+          ref={menuRef} 
           className={`flex-col md:flex-row md:flex md:space-x-6 space-y-2 md:space-y-0 absolute md:static bg-[#0A1A35] w-full md:w-auto transition-all duration-300 ease-in-out transform ${
             isOpen ? "translate-y-0" : "-translate-y-full"
           } md:translate-y-0`}
@@ -109,7 +109,7 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Responsive Buttons */}
+        
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
           <button className="relative bg-[#1E3A8A] hover:bg-[#2563EB] px-4 py-2 rounded text-white transition duration-300 ease-in-out shadow-lg">
             <span className="absolute inset-0 bg-blue-600 opacity-20 blur-lg rounded-lg"></span>

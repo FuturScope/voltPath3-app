@@ -3,7 +3,7 @@ const logos = [
   { src: "src/assets/images/generation.jpeg", alt: "" },
   { src: "src/assets/images/mastercard.png", alt: "" },
   { src: "src/assets/images/grow.png", alt: "" },
-  // Add more logos as needed
+  
 ];
 
 const LogoCarousel = () => {
@@ -20,17 +20,17 @@ const LogoCarousel = () => {
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="max-h-20 mx-auto drop-shadow-[0_4px_10px_rgba(0,128,255,0.6)]" // Custom shadow with glow effect
+                className="max-h-20 mx-auto drop-shadow-[0_4px_10px_rgba(0,128,255,0.6)]" //glow effect
               />
             </div>
           ))}
-          {/* Repeat the logos to create the loop effect */}
+        
           {logos.map((logo, index) => (
             <div key={index + logos.length} className="flex-none w-1/4 p-4">
               <img
                 src={logo.src}
                 alt={logo.alt}
-                className="max-h-20 mx-auto drop-shadow-[0_4px_10px_rgba(0,128,255,0.6)]" // Custom shadow with glow effect
+                className="max-h-20 mx-auto drop-shadow-[0_4px_10px_rgba(0,128,255,0.6)]" // glow effect
               />
             </div>
           ))}

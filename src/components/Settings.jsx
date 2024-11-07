@@ -5,25 +5,25 @@ const Settings = () => {
   const [theme, setTheme] = useState("light");
   const [username] = useState("User123");
   const [email] = useState("user@example.com");
-  const [selectedOption, setSelectedOption] = useState(""); // State for the dropdown option
+  const [selectedOption, setSelectedOption] = useState(""); 
 
   const handleThemeChange = (event) => {
     setTheme(event.target.value);
-    // You can add logic to apply the theme
+    
   };
 
   const handleChange = (event) => {
-    setSelectedOption(event.target.value); // Update selected option state
+    setSelectedOption(event.target.value); 
   };
 
   const handleSave = () => {
-    // Logic to save the settings (e.g., API call to save user settings)
+    
     console.log("Settings saved:", {
       notificationEnabled,
       theme,
       username,
       email,
-      selectedOption, // Include selected option in the saved settings
+      selectedOption, 
     });
   };
 

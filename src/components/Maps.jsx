@@ -27,25 +27,24 @@ const Maps = () => {
     event.preventDefault();
 
     const apiKey =
-      "pk.eyJ1IjoibmF2aWdhdGUtbmluamEiLCJhIjoiY20zMXU5bnZiMTA0dzJrc2h4Z3E5MTViYSJ9.1ufVYNvTw1oqLfGG29tqmQ"; // Replace with your actual Mapbox public access token
+      "pk.eyJ1IjoibmF2aWdhdGUtbmluamEiLCJhIjoiY20zMXU5bnZiMTA0dzJrc2h4Z3E5MTViYSJ9.1ufVYNvTw1oqLfGG29tqmQ"; 
     const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(
       searchTerm
       )}.json?access_token=${apiKey}`;
-      //api.mapbox.com/search/geocode/v6/batch
-      //api.mapbox.com / geocoding / v5 / mapbox.places;
+      
 
       https: try {
         const response = await axios.get(url);
         const results = response.data.features;
 
         if (results.length > 0) {
-          const { center } = results[0]; // center contains [lng, lat]
-          const newPosition = [center[1], center[0]]; // Switch to [lat, lng]
+          const { center } = results[0]; 
+          const newPosition = [center[1], center[0]];
 
-          // Update the position of the map
+      
           setPosition(newPosition);
 
-          // Update markers to show the searched location
+          
           setMarkers([{ lat: center[1], lng: center[0] }]);
         }
       } catch (error) {
@@ -84,7 +83,7 @@ const Maps = () => {
           <Popup>You are here.</Popup>
         </Marker>
 
-        {/* Render markers for charging stations if available */}
+        
         {markers.map((marker, index) => (
           <Marker
             key={index}

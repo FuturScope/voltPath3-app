@@ -5,7 +5,6 @@ import SignUp from "./components/SignUp";
 import Settings from "./components/Settings";
 import Overview from "./components/Overview";
 import DashBoardLayout from "./layouts/dashBoardLayout";
-import Favourites from "./components/Favourites";
 import Bookmarks from "./components/Bookmarks";
 import Trips from "./components/Trips";
 import Maps from "./components/Maps";
@@ -46,10 +45,6 @@ function App() {
           element:<Overview/>
         },
         {
-          path:"favourites",
-          element: <Favourites/>,
-        },
-        {
           path: "booked-slots",
           element:<BookedSlots/>,
           
@@ -62,10 +57,6 @@ function App() {
           path:"maps",
           element: <Maps/>,
         },
-        // {
-        //   path:"inbox",
-        //   element: <Inbox/>,
-        // },
         {
           path:"trips",
           element: <Trips/>,

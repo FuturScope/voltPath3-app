@@ -13,27 +13,28 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 p-6 pt-[5%]">
       <div className="container mx-auto  justify-center flex flex-col md:flex-row items-center space-y-12 md:space-y-0 md:space-x-12">
-        {/* Quick Links */}
+      
         <div className="flex flex-col items-start  space-y-2 text-left">
           <h4 className="text-base text-white font-bold">Quick Links</h4>
 
-          <Link
+          <Link 
             className="text-gray-400 hover:text-blue-500 text-sm"
             to="/maps"
           >
             Maps
-          </Link>
-          <Link className="text-gray-400 hover:text-blue-500 text-sm" to="/trips">
+          </Link >
+          <Link className="text-gray-400 hover:text-blue-500 text-sm" 
+          to="/dashboard/trips">
              Trips
           </Link>
-          <Link className="text-gray-400 hover:text-blue-500 text-sm" to="/bookmarks">
+          <Link className="text-gray-400 hover:text-blue-500 text-sm" to="/dashboard/bookmarks">
             
               Bookmarks
 
           </Link>
         </div>
 
-        {/* Newsletter Subscription */}
+      
         <div className="flex flex-col items-start space-y-2 text-left">
           <h4 className="text-base text-white font-bold">
             Subscribe to our Newsletter
@@ -48,7 +49,7 @@ const Footer = () => {
           </button>
         </div>
 
-        {/* Contact Information */}
+      
         <div className="flex flex-col items-start space-y-2 text-left">
           <h4 className="text-base text-white font-bold">Contact Us</h4>
           <p className="text-gray-400 text-sm">Email: info@voltPath.com</p>
@@ -57,7 +58,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Social Icons */}
+      
       <div className="flex gap-4 pt-6 justify-center pb-4 w-full">
         <a
           href="https://twitter.com"
@@ -101,7 +102,7 @@ const Footer = () => {
         </a>
       </div>
 
-      {/* Copyright Notice */}
+    
       <div className="text-center">
         <p className="text-gray-400 text-sm">
           &copy; {new Date().getFullYear()} voltPath. All rights reserved.

@@ -75,7 +75,7 @@ const Reservation = () => {
             <select name="name" id="name" className="w-full p-1 border rounded">
               <option value="">Select a station</option>
               <option value="Thunder Volt">Thunder Volt</option>
-              <option value="Safe Charge">Safe Charge</option>
+              <option value="Safe Charge">Save Charge</option>
               <option value="Green EV">Green EV</option>
               <option value="Clowgehob">Clowgehob</option>
               <option value="Everyone CS">Everyone CS</option>

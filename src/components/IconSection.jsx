@@ -12,7 +12,7 @@ const IconSection = () => {
         {iconsData.map((item, index) => (
           <div
             key={index}
-            className="bg-[#0B132B] bg-opacity-20 backdrop-blur-lg rounded-lg shadow-lg p-8 flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105 relative hover:bg-opacity-50" // Increased opacity on hover
+            className="bg-[#0B132B] bg-opacity-20 backdrop-blur-lg rounded-lg shadow-lg p-8 flex flex-col items-center text-center transform transition-transform duration-300 hover:scale-105 relative hover:bg-opacity-50" 
           >
             <div className="text-6xl mb-4 text-[#4DA1FF] animate-pulse hover:animate-none transition duration-300 ease-in-out hover:text-[#6DD8FF] hover:shadow-glow">
               {item.icon}
@@ -24,7 +24,7 @@ const IconSection = () => {
               {item.description}
             </p>
 
-            {/* Neon Glow Border */}
+            
             <div className="absolute inset-0 rounded-lg border border-[#4DA1FF] opacity-30 blur-md transition-opacity duration-300 hover:opacity-60"></div>
           </div>
         ))}
