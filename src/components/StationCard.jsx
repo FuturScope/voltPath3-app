@@ -91,7 +91,7 @@ import StarRating from "../components/StarRating";
 // Image mapping based on station ID or name
 
 
-const StationCard = ({ station, image}) => {
+const StationCard = ({ station}) => {
   const navigate = useNavigate();
 
   const handleReserve = () => {
@@ -116,12 +116,12 @@ const StationCard = ({ station, image}) => {
     });
   };
 
-
+   
 
   return (
     <div className="bg-white p-4 rounded-lg shadow-md transition duration-300 transform hover:scale-105">
       <img
-        src={`https://savefiles.org/${image}?shareable_link=475`}
+        src={`https://savefiles.org/${station.image}?shareable_link=475`}
         alt={`company logo`}
         className="h-40 w-full object-cover rounded-md"
       />
