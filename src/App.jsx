@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Inbox from "./components/Inbox";
 import Settings from "./components/Settings";
 import Overview from "./components/Overview";
 import DashBoardLayout from "./layouts/dashBoardLayout";
@@ -63,10 +62,10 @@ function App() {
           path:"maps",
           element: <Maps/>,
         },
-        {
-          path:"inbox",
-          element: <Inbox/>,
-        },
+        // {
+        //   path:"inbox",
+        //   element: <Inbox/>,
+        // },
         {
           path:"trips",
           element: <Trips/>,
