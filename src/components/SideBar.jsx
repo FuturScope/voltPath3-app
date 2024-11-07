@@ -15,9 +15,11 @@ import LogoutPopup from "./LogoutPopup";
 const Sidebar = ({id}) => {
   return (
     <aside className="w-80 bg-[#1A1C2C] h-screen p-4 border-gray-200 shadow-lg font- rounded-lg">
-      <div className="mb-1">
-        <h1 className="text-xl font-bold text-[#4DA1FF]">Welcome!</h1>
-      </div>
+      <Link to="/">
+        <div className="mb-1">
+          <h1 className="text-xl font-bold text-[#4DA1FF]">Welcome!</h1>
+        </div>
+      </Link>
       <div className="pt-1">
         <div className="flex justify-center">
           <img

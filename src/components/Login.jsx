@@ -116,16 +116,6 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="mb-4 w-[70%]">
-            <input type="checkbox" />
-            <span className="text-gray-700 text-sm">
-              I agree to the {""}
-              <span className="text-blue-700 hover:text-[#4DA1FF] underline">
-                terms and conditions
-              </span>
-            </span>
-          </div>
-
           <button
             type="submit"
             className="bg-blue-500 border border-[#4DA1FF] px-4 py-2 rounded text-white transition duration-300 ease-in-out hover:bg-blue-600 hover:text-[#0A1A35] shadow-lg mb-4"

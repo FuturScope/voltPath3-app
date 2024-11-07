@@ -29,9 +29,11 @@ const Navbar = () => {
       <div className="flex flex-col md:flex-row justify-between items-center px-6 py-4">
         <div className="flex items-center mb-4 md:mb-0">
           <img src={logo} alt="voltPath Logo" className="h-10 w-10 mr-2" />
-          <div className="text-2xl font-bold text-[#4DA1FF] tracking-wider">
-            voltPath
-          </div>
+          <Link to="/">
+            <div className="text-2xl font-bold text-[#4DA1FF] tracking-wider">
+              voltPath
+            </div>
+          </Link>
         </div>
 
         {/* Hamburger Menu Icon */}
