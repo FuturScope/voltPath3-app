@@ -3,7 +3,6 @@ import user1 from "../assets/images/user1.jpg";
 import {
   FaHome,
   FaBookmark,
-  FaInbox,
   FaCog,
   FaCar,
   FaSignOutAlt,
@@ -23,7 +22,7 @@ const Sidebar = ({id}) => {
       <div className="pt-1">
         <div className="flex justify-center">
           <img
-            className="w-[10vw] h-[25vh] rounded-full border-4 border-[#4DA1FF]"
+            className="w-[10vw] h-[30vh] rounded-full border-4 border-[#4DA1FF]"
             src={user1}
             alt="User profile"
           />
@@ -67,13 +66,7 @@ const Sidebar = ({id}) => {
           Bookmarks
         </Link>
 
-        <Link
-          to="/dashboard/inbox"
-          className="flex items-center text-[#4DA1FF] p-1 hover:bg-[#66ccff10] active:bg-[#66CCFF] focus:outline-none focus:ring focus:ring-[#66CCFF] rounded-md"
-        >
-          <FaInbox className="mr-3" />
-          Inbox
-        </Link>
+  
 
         <Link
           to="/dashboard/trips"

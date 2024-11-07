@@ -29,7 +29,7 @@ const StationCard = ({ station }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+   
       <div className="bg-white p-6 rounded-lg shadow-md flex flex-col justify-between text-sm duration-300 max-w-md mx-auto sm:m-4">
         <div>
           <img
@@ -68,7 +68,7 @@ const StationCard = ({ station }) => {
           Reserve
         </button>
       </div>
-    </div>
+    
   );
 };
 

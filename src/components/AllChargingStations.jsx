@@ -41,9 +41,13 @@ const AllChargingStations = () => {
         ) : (
           <div
             id="chargingstation-cards"
-            className=" w-[70%] mx-auto my-auto grid grid-cols-3 grid-rows-2 gap-x-[1rem] gap-y-[1.5rem]"
+            className=" w-[55%] mx-auto my-auto lg:grid grid-cols-3 md:grid-rows-2 sm: gap-x-[1rem] lg:gap-y-[1.5rem]"
+            
+            >
           
-          >
+  
+
+
             {chargingStations.map((station) => (
               <StationCard key={station.id} station={station} />
             ))}
