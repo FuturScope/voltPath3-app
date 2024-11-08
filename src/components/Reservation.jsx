@@ -1,14 +1,35 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { apiReserve } from "../services/reserve";
 import Swal from "sweetalert2";
 
 const Reservation = () => {
   const navigate = useNavigate();
 
+  // State to handle selected station and its corresponding locations
+  const [selectedStation, setSelectedStation] = useState("");
+  const [locations, setLocations] = useState([]);
+
+  // Mapping of stations to their corresponding locations
+  const stationLocationsMap = {
+    "Thunder Volt": ["East Legon", "Madina", "Airport City"],
+    "Safe Charge": ["Osu", "Tema", "Spintex"],
+    "Green EV": ["Accra Mall", "Labone", "Dansoman"],
+    "Clowgehob": ["Kanda", "Ridge", "Kokomlemle"],
+    "Everyone CS": ["Cantonments", "Achimota", "Circle"],
+  };
+
+  const handleStationChange = (event) => {
+    const station = event.target.value;
+    setSelectedStation(station);
+
+    // Update the locations based on the selected station
+    setLocations(stationLocationsMap[station] || []);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
       const formData = new FormData(e.target);
       const name = formData.get("name");
       const location = formData.get("location");
@@ -27,26 +48,15 @@ const Reservation = () => {
       console.log(response);
 
       if (response.status === 200) {
-       
-      console.log(response.data); 
-       
-
         Swal.fire({
           icon: "success",
           title: "Station booked successfully",
           showConfirmButton: false,
           timer: 1500,
         });
-
-
-
-       
-
-       
-
+      
       }
-
-       navigate("/dashboard/booked-slots");
+        navigate("/dashboard/booked-slots");
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -72,13 +82,19 @@ const Reservation = () => {
             <label className="text-gray-700 font-bold mb-2" htmlFor="name">
               Name
             </label>
-            <select name="name" id="name" className="w-full p-1 border rounded">
+            <select
+              name="name"
+              id="name"
+              className="w-full p-1 border rounded"
+              onChange={handleStationChange}
+              required
+            >
               <option value="">Select a station</option>
-              <option value="Thunder Volt">Thunder Volt</option>
-              <option value="Safe Charge">Save Charge</option>
-              <option value="Green EV">Green EV</option>
-              <option value="Clowgehob">Clowgehob</option>
-              <option value="Everyone CS">Everyone CS</option>
+              {Object.keys(stationLocationsMap).map((station) => (
+                <option key={station} value={station}>
+                  {station}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -90,13 +106,19 @@ const Reservation = () => {
               name="location"
               id="location"
               className="w-full p-1 border rounded"
+              required
+              disabled={!selectedStation}
             >
-              <option value="">Select a location</option>
-              <option value="East Legon">Dansoman</option>
-              <option value="Abelemkpe">Cantoments</option>
-              <option value="Pokuwase">Osu</option>
-              <option value="Oyarifa">Legon</option>
-              <option value="Achimota">Spintex</option>
+              <option value="">
+                {selectedStation
+                  ? "Select a location"
+                  : "Select a station first"}
+              </option>
+              {locations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -111,11 +133,16 @@ const Reservation = () => {
               name="chargerType"
               id="chargerType"
               className="w-full p-1 border rounded"
+              required
             >
               <option value="">Select a charger type</option>
               <option value="Level 1 Charger (120V AC)">
                 Level 1 Charger (Standard 120V AC)
               </option>
+              <option value="Level 2 Charger (240V AC)">
+                Level 2 Charger (240V AC)
+              </option>
+              <option value="DC Fast Charger">DC Fast Charger</option>
             </select>
             <div>
               <p className="flex items-center mt-4 text-gray-700 font-bold">
@@ -178,4 +205,3 @@ const Reservation = () => {
 };
 
 export default Reservation;
-

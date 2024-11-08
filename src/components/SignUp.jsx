@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { apiSignup } from "../services/auth";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
   const [loading, setLoading] = useState(false);
@@ -32,7 +33,7 @@ const SignUp = () => {
         timer: 1000,
       });
 
-      navigate("/dashboard");
+      navigate("/login");
     } catch (error) {
       console.error("Error during signup:", error);
       Swal.fire({
@@ -170,6 +171,11 @@ const SignUp = () => {
           >
             {loading ? "Loading..." : "Sign Up"}
           </button>
+          <div className="mt-4 text-center">
+            <Link to="/" className="text-blue-700 hover:underline">
+              Back to Home
+            </Link>
+          </div>
         </form>
       </div>
       <a

@@ -7,6 +7,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
 import { apiLogin } from "../services/auth";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
@@ -144,6 +145,11 @@ const Login = () => {
             <FaApple className="mr-2" />
             Login with Apple
           </button>
+          <div className="mt-4 text-center">
+            <Link to="/" className="text-blue-700 hover:underline">
+              Back to Home
+            </Link>
+          </div>
         </form>
       </div>
       <a

@@ -1,16 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
 import logo from "../assets/images/logo.png"; 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); 
+  const navigate = useNavigate();
   const menuRef = useRef(null); 
+
+  const handleLoginAlert = (e) => {
+    e.preventDefault();
+    Swal.fire({
+      icon: "warning",
+      title: "You need to login first to access this page.",
+      text: "Please login to access this page.",
+      showCancelButton: true,
+      confirmButtonText: "Login",
+      cancelButtonText: "Cancel",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/login");
+      }
+    });
+  }; 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -36,7 +56,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        
         <div className="md:hidden">
           <button
             onClick={toggleMenu}
@@ -76,9 +95,8 @@ const Navbar = () => {
           </button>
         </div>
 
-        
         <ul
-          ref={menuRef} 
+          ref={menuRef}
           className={`flex-col md:flex-row md:flex md:space-x-6 space-y-2 md:space-y-0 absolute md:static bg-[#0A1A35] w-full md:w-auto transition-all duration-300 ease-in-out transform ${
             isOpen ? "translate-y-0" : "-translate-y-full"
           } md:translate-y-0`}
@@ -94,22 +112,22 @@ const Navbar = () => {
           <li className="relative text-[#4DA1FF] hover:text-[#66CCFF] transition-colors duration-300 cursor-pointer px-2 py-1 rounded">
             <Link
               to="/dashboard/trips"
+              onClick={handleLoginAlert}
               className="before:absolute before:inset-0 before:rounded before:blur-md before:bg-[#4DA1FF] before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
             >
               Trips
             </Link>
           </li>
           <li className="relative text-[#4DA1FF] hover:text-[#66CCFF] transition-colors duration-300 cursor-pointer px-2 py-1 rounded">
-            <Link
-              to="/dashboard/bookmarks"
+            <button
+              onClick={handleLoginAlert}
               className="before:absolute before:inset-0 before:rounded before:blur-md before:bg-[#4DA1FF] before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-100"
             >
               Bookmarks
-            </Link>
+            </button>
           </li>
         </ul>
 
-        
         <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mt-4 md:mt-0">
           <button className="relative bg-[#1E3A8A] hover:bg-[#2563EB] px-4 py-2 rounded text-white transition duration-300 ease-in-out shadow-lg">
             <span className="absolute inset-0 bg-blue-600 opacity-20 blur-lg rounded-lg"></span>

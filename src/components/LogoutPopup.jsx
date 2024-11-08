@@ -21,13 +21,13 @@ const LogoutPopup = () => {
           title: "Logout Successful",
           showConfirmButton: false,
           timer: 1500,
-        });
-
-    
-        navigate("/login");
-      }
+          
+        });  navigate("/login"); }
+     
     });
   };
+
+
 
   return (
     <button

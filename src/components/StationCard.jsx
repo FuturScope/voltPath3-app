@@ -43,9 +43,7 @@ const StationCard = ({ station }) => {
           <span>Reviews:</span>
           <StarRating rating={station.rating} />
         </div>
-        <p className="text-gray-600 text-sm mb-2">
-          <span className="font-bold">Location:</span> {station.location}
-        </p>
+        
         <p className="text-gray-600 text-sm mb-2">
           <span className="font-bold">Charger Type:</span> {station.chargerType}
         </p>

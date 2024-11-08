@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../services/config";
 import loadingGif from "../assets/images/loading.gif";
 import StationCard from "./StationCard";
