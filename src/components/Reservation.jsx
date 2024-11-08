@@ -6,25 +6,47 @@ import Swal from "sweetalert2";
 const Reservation = () => {
   const navigate = useNavigate();
 
-  // State to handle selected station and its corresponding locations
+  // State to handle selected station, locations, and charger type
   const [selectedStation, setSelectedStation] = useState("");
   const [locations, setLocations] = useState([]);
+  const [availableChargerType, setAvailableChargerType] = useState("");
 
-  // Mapping of stations to their corresponding locations
+  // Mapping of stations to their corresponding locations and charger types
   const stationLocationsMap = {
-    "Thunder Volt": ["East Legon", "Madina", "Airport City"],
-    "Safe Charge": ["Osu", "Tema", "Spintex"],
-    "Green EV": ["Accra Mall", "Labone", "Dansoman"],
-    "Clowgehob": ["Kanda", "Ridge", "Kokomlemle"],
-    "Everyone CS": ["Cantonments", "Achimota", "Circle"],
+    "Thunder Volt": {
+      locations: ["East Legon", "Madina", "Airport City"],
+      chargerType: "Level 1 Charger (Standard 120V AC)",
+    },
+    "Safe Charge": {
+      locations: ["Osu", "Tema", "Spintex"],
+      chargerType: "Level 2 Charger (240V AC)",
+    },
+    "Green EV": {
+      locations: ["Accra Mall", "Labone", "Dansoman"],
+      chargerType: "DC Fast Charger (DCFC)",
+    },
+    Clowgehob: {
+      locations: ["Kanda", "Ridge", "Kokomlemle"],
+      chargerType: "Tesla Supercharger",
+    },
+    "Everyone CS": {
+      locations: ["Cantonments", "Achimota", "Circle"],
+      chargerType: "Ultra-Fast Charge",
+    },
   };
 
+  // Handle station selection change
   const handleStationChange = (event) => {
     const station = event.target.value;
     setSelectedStation(station);
 
-    // Update the locations based on the selected station
-    setLocations(stationLocationsMap[station] || []);
+    // Update locations and charger type based on the selected station
+    const stationInfo = stationLocationsMap[station] || {
+      locations: [],
+      chargerType: "",
+    };
+    setLocations(stationInfo.locations);
+    setAvailableChargerType(stationInfo.chargerType);
   };
 
   const handleSubmit = async (e) => {
@@ -45,18 +67,18 @@ const Reservation = () => {
         reservationTime,
       });
 
-      console.log(response);
-
       if (response.status === 200) {
-        Swal.fire({
-          icon: "success",
-          title: "Station booked successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      
+       
+        
       }
-        navigate("/dashboard/booked-slots");
+       Swal.fire({
+         icon: "success",
+         title: "Station booked successfully",
+         showConfirmButton: false,
+         timer: 1500,
+       });
+
+      navigate("/dashboard/booked-slots");
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -78,6 +100,7 @@ const Reservation = () => {
         </h2>
 
         <div className="grid grid-cols-2 gap-4">
+          {/* Station Selection */}
           <div className="mb-2">
             <label className="text-gray-700 font-bold mb-2" htmlFor="name">
               Name
@@ -98,6 +121,7 @@ const Reservation = () => {
             </select>
           </div>
 
+          {/* Location Selection */}
           <div className="mb-2">
             <label className="text-gray-700 font-bold mb-2" htmlFor="location">
               Location
@@ -122,6 +146,7 @@ const Reservation = () => {
             </select>
           </div>
 
+          {/* Charger Type (Auto-populated based on station) */}
           <div className="mb-2">
             <label
               className="text-gray-700 font-bold mb-2"
@@ -129,21 +154,15 @@ const Reservation = () => {
             >
               Charger Type
             </label>
-            <select
+            <input
+              type="text"
               name="chargerType"
               id="chargerType"
               className="w-full p-1 border rounded"
+              value={availableChargerType}
+              readOnly
               required
-            >
-              <option value="">Select a charger type</option>
-              <option value="Level 1 Charger (120V AC)">
-                Level 1 Charger (Standard 120V AC)
-              </option>
-              <option value="Level 2 Charger (240V AC)">
-                Level 2 Charger (240V AC)
-              </option>
-              <option value="DC Fast Charger">DC Fast Charger</option>
-            </select>
+            />
             <div>
               <p className="flex items-center mt-4 text-gray-700 font-bold">
                 <span className="w-2 h-2 rounded-full bg-green-600 mr-2"></span>
@@ -152,6 +171,7 @@ const Reservation = () => {
             </div>
           </div>
 
+          {/* Date and Time Selection */}
           <div className="mt-4 col-span-2">
             <h2 className="text-xl">Choose a date and time</h2>
             <label
@@ -180,15 +200,21 @@ const Reservation = () => {
               required
             >
               <option value="">Select a time slot</option>
-              <option value="09:00 AM">09:00 AM</option>
-              <option value="10:00 AM">10:00 AM</option>
-              <option value="11:00 AM">11:00 AM</option>
-              <option value="12:00 PM">12:00 PM</option>
-              <option value="01:00 PM">01:00 PM</option>
-              <option value="02:00 PM">02:00 PM</option>
-              <option value="03:00 PM">03:00 PM</option>
-              <option value="04:00 PM">04:00 PM</option>
-              <option value="05:00 PM">05:00 PM</option>
+              {[
+                "09:00 AM",
+                "10:00 AM",
+                "11:00 AM",
+                "12:00 PM",
+                "01:00 PM",
+                "02:00 PM",
+                "03:00 PM",
+                "04:00 PM",
+                "05:00 PM",
+              ].map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
             </select>
 
             <button
@@ -205,3 +231,4 @@ const Reservation = () => {
 };
 
 export default Reservation;
+

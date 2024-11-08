@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 const LogoutPopup = () => {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+     e.preventDefault();
     Swal.fire({
       title: "Are you sure you want to logout?",
       icon: "warning",
