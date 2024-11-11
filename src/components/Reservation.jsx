@@ -68,15 +68,14 @@ const Reservation = () => {
       });
 
       if (response.status === 200) {
-       
-        
       }
-       Swal.fire({
-         icon: "success",
-         title: "Station booked successfully",
-         showConfirmButton: false,
-         timer: 1500,
-       });
+      Swal.fire({
+        icon: "success",
+        title:
+          "An email has been sent to you with the details of your reservation",
+        showConfirmButton: false,
+        timer: 1500,
+      });
 
       navigate("/dashboard/booked-slots");
     } catch (error) {
@@ -231,4 +230,3 @@ const Reservation = () => {
 };
 
 export default Reservation;
-
