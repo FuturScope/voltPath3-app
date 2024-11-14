@@ -6,7 +6,7 @@ const LogoutPopup = () => {
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
-     e.preventDefault();
+    e.preventDefault();
     Swal.fire({
       title: "Are you sure you want to logout?",
       icon: "warning",
@@ -22,22 +22,18 @@ const LogoutPopup = () => {
           title: "Logout Successful",
           showConfirmButton: false,
           timer: 1500,
-          
-        });  navigate("/login"); }
-     
+        }).then(() => {
+          // Clear user data from localStorage
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          // Navigate to login page after the success message
+          navigate("/login");
+        });
+      }
     });
   };
 
-
-
-  return (
-    <button
-      onClick={handleLogout}
-    
-    >
-      Logout
-    </button>
-  );
+  return <button onClick={handleLogout}>Logout</button>;
 };
 
 export default LogoutPopup;
