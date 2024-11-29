@@ -1,9 +1,7 @@
 const logos = [
-  { src: "src/assets/images/mest.jpeg", alt: "" },
-  { src: "src/assets/images/generation.jpeg", alt: "" },
-  { src: "src/assets/images/mastercard.png", alt: "" },
-  { src: "src/assets/images/grow.png", alt: "" },
-  
+  { src: "/mest.jpeg", alt: "MEST" },
+  { src: "/generation.jpeg", alt: "Generation" },
+  { src: "/mastercard.png", alt: "Mastercard" },
 ];
 
 const LogoCarousel = () => {
@@ -24,7 +22,7 @@ const LogoCarousel = () => {
               />
             </div>
           ))}
-        
+
           {logos.map((logo, index) => (
             <div key={index + logos.length} className="flex-none w-1/4 p-4">
               <img
